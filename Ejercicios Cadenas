@@ -1,0 +1,16 @@
+using System;
+
+class ProgramaCadenas
+{
+    static void Main(string[] args)
+    {
+        Console.Write("Ingresa una palabra: ");
+        string palabra = Console.ReadLine();
+
+        char[] arregloCaracteres = palabra.ToCharArray();
+        Array.Reverse(arregloCaracteres);
+
+        string palabraInvertida = new string(arregloCaracteres);
+        Console.WriteLine("Palabra al revés: " + palabraInvertida);
+    }
+}
