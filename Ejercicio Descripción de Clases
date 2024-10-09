@@ -1,0 +1,44 @@
+public class Persona
+{
+    // Propiedades
+    public string Nombre { get; set; }
+    public int Edad { get; set; }
+
+    // Constructor
+    public Persona(string nombre, int edad)
+    {
+        Nombre = nombre;
+        Edad = edad;
+    }
+
+    // Método para que la persona se presente
+    public void Presentarse()
+    {
+        Console.WriteLine($"Hola, me llamo {Nombre} y tengo {Edad} años.");
+    }
+
+    // Método para verificar si es mayor de edad
+    public bool EsMayorDeEdad()
+    {
+        return Edad >= 18;
+    }
+}
+
+// Uso de la clase en el programa principal
+class Program
+{
+    static void Main(string[] args)
+    {
+        Persona persona1 = new Persona("Juan", 20);
+        persona1.Presentarse();
+
+        if (persona1.EsMayorDeEdad())
+        {
+            Console.WriteLine($"{persona1.Nombre} es mayor de edad.");
+        }
+        else
+        {
+            Console.WriteLine($"{persona1.Nombre} no es mayor de edad.");
+        }
+    }
+}
