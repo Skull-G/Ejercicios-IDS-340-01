@@ -1,0 +1,47 @@
+using System;
+using System.Data;
+using System.Data.SqlClient;
+
+public class ConexionBD
+{
+    private string cadenaConexion;
+
+    public ConexionBD(string cadena)
+    {
+        cadenaConexion = cadena;
+    }
+
+    // Método para conectar a la base de datos y mostrar tablas
+    public void ConectarYListarTablas()
+    {
+        using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+        {
+            try
+            {
+                conexion.Open();
+                Console.WriteLine("Conexión exitosa.");
+                
+                // Obtener las tablas de la base de datos
+                DataTable tablas = conexion.GetSchema("Tables");
+                foreach (DataRow row in tablas.Rows)
+                {
+                    Console.WriteLine($"Tabla: {row[2]}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        string cadenaConexion = "Data Source=mi_servidor;Initial Catalog=mi_base_de_datos;Integrated Security=True";
+        ConexionBD conexion = new ConexionBD(cadenaConexion);
+        conexion.ConectarYListarTablas();
+    }
+}
