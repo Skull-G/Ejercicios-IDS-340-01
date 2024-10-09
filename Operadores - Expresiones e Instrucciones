@@ -1,0 +1,36 @@
+using System;
+
+public class NumerosPrimos
+{
+    public bool EsPrimo(int numero)
+    {
+        if (numero <= 1) return false;
+        for (int i = 2; i <= Math.Sqrt(numero); i++)
+        {
+            // Usando el operador de módulo para verificar divisibilidad
+            if (numero % i == 0) return false;
+        }
+        return true;
+    }
+
+    public void ImprimirPrimosHasta(int limite)
+    {
+        Console.WriteLine($"Números primos hasta {limite}:");
+        for (int i = 2; i <= limite; i++)
+        {
+            if (EsPrimo(i))
+            {
+                Console.WriteLine(i);
+            }
+        }
+    }
+}
+
+public class Programa
+{
+    public static void Main()
+    {
+        NumerosPrimos primos = new NumerosPrimos();
+        primos.ImprimirPrimosHasta(20);  // Imprimir los números primos hasta 20
+    }
+}
