@@ -1,0 +1,34 @@
+using System;
+
+public class ManejoExcepciones
+{
+    public void Dividir(int a, int b)
+    {
+        try
+        {
+            // Intentar realizar la división
+            int resultado = a / b;
+            Console.WriteLine($"El resultado de {a} / {b} es {resultado}.");
+        }
+        catch (DivideByZeroException ex)
+        {
+            // Manejar la excepción de división por cero
+            Console.WriteLine("Error: No se puede dividir entre cero.");
+            Console.WriteLine($"Detalles: {ex.Message}");
+        }
+        finally
+        {
+            // Código que se ejecuta siempre
+            Console.WriteLine("Operación finalizada.");
+        }
+    }
+}
+
+public class Programa
+{
+    public static void Main()
+    {
+        ManejoExcepciones manejo = new ManejoExcepciones();
+        manejo.Dividir(10, 0);  // Intentar dividir por cero
+    }
+}
