@@ -1,0 +1,37 @@
+using System;
+
+namespace ProyectoFecha
+{
+    // Clase que utiliza la clase DateTime de .NET
+    public class ManejoFechas
+    {
+        public void MostrarFechaActual()
+        {
+            DateTime fechaActual = DateTime.Now;
+            Console.WriteLine($"La fecha y hora actual es: {fechaActual}");
+        }
+
+        public void CalcularEdad(DateTime fechaNacimiento)
+        {
+            DateTime fechaActual = DateTime.Now;
+            int edad = fechaActual.Year - fechaNacimiento.Year;
+            
+            if (fechaNacimiento > fechaActual.AddYears(-edad)) 
+                edad--;
+
+            Console.WriteLine($"Tu edad es: {edad} años.");
+        }
+    }
+
+    public class Programa
+    {
+        public static void Main()
+        {
+            ManejoFechas fechas = new ManejoFechas();
+            fechas.MostrarFechaActual();
+
+            // Calcular la edad con una fecha de nacimiento
+            fechas.CalcularEdad(new DateTime(1990, 5, 15));  // Cambia la fecha según lo desees
+        }
+    }
+}
