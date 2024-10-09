@@ -1,0 +1,48 @@
+public class CuentaBancaria
+{
+    // El balance solo puede ser modificado dentro de la clase
+    private double balance;
+
+    // Constructor que inicializa el balance
+    public CuentaBancaria(double balanceInicial)
+    {
+        balance = balanceInicial;
+    }
+
+    // Método público para depositar dinero
+    public void Depositar(double cantidad)
+    {
+        balance += cantidad;
+    }
+
+    // Método público para retirar dinero
+    public void Retirar(double cantidad)
+    {
+        if (cantidad <= balance)
+        {
+            balance -= cantidad;
+        }
+        else
+        {
+            Console.WriteLine("Fondos insuficientes.");
+        }
+    }
+
+    // Método público para consultar el balance
+    public double ObtenerBalance()
+    {
+        return balance;
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        CuentaBancaria cuenta = new CuentaBancaria(1000);
+        cuenta.Depositar(500);
+        cuenta.Retirar(200);
+
+        Console.WriteLine($"El balance actual es: {cuenta.ObtenerBalance()}");
+    }
+}
