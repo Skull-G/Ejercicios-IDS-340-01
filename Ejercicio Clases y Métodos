@@ -1,0 +1,45 @@
+public class Calculadora
+{
+    // Método para sumar dos números
+    public double Sumar(double a, double b)
+    {
+        return a + b;
+    }
+
+    // Método para restar dos números
+    public double Restar(double a, double b)
+    {
+        return a - b;
+    }
+}
+
+// Herencia: La clase Cientifica hereda de Calculadora
+public class Cientifica : Calculadora
+{
+    // Método adicional para calcular potencias
+    public double Potencia(double baseNum, double exponente)
+    {
+        return Math.Pow(baseNum, exponente);
+    }
+
+    // Método adicional para calcular la raíz cuadrada
+    public double RaizCuadrada(double numero)
+    {
+        return Math.Sqrt(numero);
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Cientifica calc = new Cientifica();
+
+        double suma = calc.Sumar(5, 3);
+        double potencia = calc.Potencia(2, 8);
+
+        Console.WriteLine($"Suma: {suma}");
+        Console.WriteLine($"2^8 = {potencia}");
+        Console.WriteLine($"Raíz cuadrada de 16: {calc.RaizCuadrada(16)}");
+    }
+}
