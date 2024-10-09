@@ -1,0 +1,13 @@
+using System;
+
+class ProgramaFechas
+{
+    static void Main(string[] args)
+    {
+        DateTime fechaActual = DateTime.Now;
+        DateTime fechaHace7Dias = fechaActual.AddDays(-7);
+
+        Console.WriteLine("Fecha y hora actual: " + fechaActual);
+        Console.WriteLine("Fecha y hora hace 7 días: " + fechaHace7Dias);
+    }
+}
