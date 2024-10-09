@@ -1,0 +1,66 @@
+using System;
+
+public class CuentaBancaria
+{
+    // Definición de un delegado para el evento
+    public delegate void SaldoBajoEventHandler(object sender, EventArgs e);
+
+    // Evento cuando el saldo es bajo
+    public event SaldoBajoEventHandler SaldoBajo;
+
+    private double saldo;
+
+    public CuentaBancaria(double saldoInicial)
+    {
+        saldo = saldoInicial;
+    }
+
+    // Método para retirar dinero
+    public void Retirar(double cantidad)
+    {
+        if (cantidad > saldo)
+        {
+            Console.WriteLine("No tienes suficiente saldo.");
+        }
+        else
+        {
+            saldo -= cantidad;
+            Console.WriteLine($"Has retirado {cantidad}$. Saldo actual: {saldo}$.");
+
+            // Desencadenar el evento si el saldo es bajo
+            if (saldo < 50)
+            {
+                OnSaldoBajo();
+            }
+        }
+    }
+
+    // Método que se ejecuta cuando se dispara el evento
+    protected virtual void OnSaldoBajo()
+    {
+        if (SaldoBajo != null)
+        {
+            SaldoBajo(this, EventArgs.Empty);
+        }
+    }
+}
+
+public class Programa
+{
+    public static void Main()
+    {
+        // Crear cuenta bancaria y suscribir al evento
+        CuentaBancaria cuenta = new CuentaBancaria(100);
+        cuenta.SaldoBajo += NotificarSaldoBajo;
+
+        // Retirar dinero
+        cuenta.Retirar(30); // No se dispara el evento
+        cuenta.Retirar(40); // Se dispara el evento
+    }
+
+    // Método para manejar el evento
+    private static void NotificarSaldoBajo(object sender, EventArgs e)
+    {
+        Console.WriteLine("¡Alerta! El saldo está por debajo del límite de seguridad.");
+    }
+}
