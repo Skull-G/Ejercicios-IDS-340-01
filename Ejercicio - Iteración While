@@ -1,0 +1,22 @@
+using System;
+
+class ProgramaWhile
+{
+    static void Main(string[] args)
+    {
+        int contador = 0;
+        int numero;
+
+        do
+        {
+            Console.Write("Ingresa un número (negativo para salir): ");
+            numero = int.Parse(Console.ReadLine());
+            if (numero >= 0)
+            {
+                contador++;
+            }
+        } while (numero >= 0);
+
+        Console.WriteLine($"Ingresaste {contador} números positivos.");
+    }
+}
