@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+
+public class AlmacenProductos
+{
+    // Lista de productos
+    private List<string> productos = new List<string>();
+
+    // Diccionario para almacenar productos con sus precios
+    private Dictionary<string, double> precios = new Dictionary<string, double>();
+
+    // Método para agregar productos
+    public void AgregarProducto(string nombre, double precio)
+    {
+        productos.Add(nombre);
+        precios[nombre] = precio;
+        Console.WriteLine($"Producto {nombre} agregado con un precio de {precio}$.");
+    }
+
+    // Método para mostrar todos los productos
+    public void MostrarProductos()
+    {
+        Console.WriteLine("Productos en el almacén:");
+        foreach (var producto in productos)
+        {
+            Console.WriteLine($"{producto}: {precios[producto]}$");
+        }
+    }
+
+    // Método para encontrar el producto más caro
+    public void ProductoMasCaro()
+    {
+        double maxPrecio = 0;
+        string productoCaro = "";
+        foreach (var producto in productos)
+        {
+            if (precios[producto] > maxPrecio)
+            {
+                maxPrecio = precios[producto];
+                productoCaro = producto;
+            }
+        }
+        Console.WriteLine($"El producto más caro es {productoCaro} con un precio de {maxPrecio}$.");
+    }
+}
