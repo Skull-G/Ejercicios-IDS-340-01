@@ -1,0 +1,49 @@
+using System;
+using System.IO;
+
+public class ManejoArchivos
+{
+    private string rutaArchivo = "datos.txt";
+
+    // Método para escribir datos en un archivo
+    public void EscribirEnArchivo(string texto)
+    {
+        using (StreamWriter writer = new StreamWriter(rutaArchivo, true))
+        {
+            writer.WriteLine(texto);
+            Console.WriteLine("Texto escrito en el archivo.");
+        }
+    }
+
+    // Método para leer datos de un archivo
+    public void LeerArchivo()
+    {
+        if (File.Exists(rutaArchivo))
+        {
+            using (StreamReader reader = new StreamReader(rutaArchivo))
+            {
+                string contenido = reader.ReadToEnd();
+                Console.WriteLine("Contenido del archivo:");
+                Console.WriteLine(contenido);
+            }
+        }
+        else
+        {
+            Console.WriteLine("El archivo no existe.");
+        }
+    }
+}
+
+public class Programa
+{
+    public static void Main()
+    {
+        ManejoArchivos archivos = new ManejoArchivos();
+
+        // Escribir datos en el archivo
+        archivos.EscribirEnArchivo("Hola, este es un mensaje guardado en el archivo.");
+
+        // Leer el contenido del archivo
+        archivos.LeerArchivo();
+    }
+}
